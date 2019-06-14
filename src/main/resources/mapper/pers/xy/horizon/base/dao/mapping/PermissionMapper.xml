@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.xy.horizon.base.dao.PermissionMapper">
+  <resultMap id="BaseResultMap" type="pers.xy.horizon.base.entity.Permission">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="add_time" jdbcType="BIGINT" property="addTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="cont" jdbcType="VARCHAR" property="cont" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, add_time, delete_time, is_delete, update_time, code, cont, icon, level, name, 
+    parent_code, parent_id, type, url, create_user
+  </sql>
+  <select id="selectByExample" parameterType="pers.xy.horizon.base.entity.PermissionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="pers.xy.horizon.base.entity.PermissionExample">
+    delete from t_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.xy.horizon.base.entity.Permission">
+    insert into t_permission (id, add_time, delete_time, 
+      is_delete, update_time, code, 
+      cont, icon, level, 
+      name, parent_code, parent_id, 
+      type, url, create_user
+      )
+    values (#{id,jdbcType=BIGINT}, #{addTime,jdbcType=BIGINT}, #{deleteTime,jdbcType=BIGINT}, 
+      #{isDelete,jdbcType=VARCHAR}, #{updateTime,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{cont,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pers.xy.horizon.base.entity.Permission">
+    insert into t_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="cont != null">
+        cont,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="cont != null">
+        #{cont,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.xy.horizon.base.entity.PermissionExample" resultType="java.lang.Long">
+    select count(*) from t_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_permission
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.deleteTime != null">
+        delete_time = #{record.deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cont != null">
+        cont = #{record.cont,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentCode != null">
+        parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_permission
+    set id = #{record.id,jdbcType=BIGINT},
+      add_time = #{record.addTime,jdbcType=BIGINT},
+      delete_time = #{record.deleteTime,jdbcType=BIGINT},
+      is_delete = #{record.isDelete,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      cont = #{record.cont,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="findByRoleIds" parameterType="list" resultMap="PermissionDtoMap">
+    select
+    <include refid="CommonMapper.permissionCommon"></include>
+    from t_rolepermission rp
+    right join t_role r on rp.role = r.id
+    right join t_permission p on rp.permission = p.id
+    where r.id in
+    <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+      #{id}
+    </foreach>;
+  </select>
+
+  <resultMap id="PermissionDtoMap" type="pers.xy.horizon.base.dto.PermissionDto">
+    <result column="p_id" jdbcType="BIGINT" property="id" />
+    <result column="p_code" jdbcType="VARCHAR" property="pCode" />
+    <result column="p_cont" jdbcType="VARCHAR" property="cont" />
+    <result column="p_icon" jdbcType="VARCHAR" property="icon" />
+    <result column="p_level" jdbcType="INTEGER" property="level" />
+    <result column="p_name" jdbcType="VARCHAR" property="name" />
+    <result column="p_parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="p_parent_id" jdbcType="BIGINT" property="parentIid" />
+    <result column="p_type" jdbcType="VARCHAR" property="type" />
+    <result column="p_url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+
+</mapper>

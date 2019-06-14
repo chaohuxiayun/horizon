@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommonMapper">
+
+    <sql id="userCommon" >
+        u.id as u_id,
+        u.add_time as u_addTime,
+        u.delete_time as u_deleteTime,
+        u.is_delete as u_isDelete,
+        u.update_time as u_updateTime,
+        u.login_name as u_loginName,
+        u.password as u_password,
+        u.user_name as u_userName
+    </sql>
+
+    <sql id="roleCommon" >
+        r.id as r_id,
+        r.add_time as r_addTime,
+        u.delete_time as r_deleteTime,
+        r.is_delete as r_isDelete,
+        r.update_time as r_updateTime,
+        r.code as r_code,
+        r.name as r_name
+    </sql>
+
+    <sql id="permissionCommon" >
+        p.id as p_id,
+        p.code as p_code,
+        p.name as p_name,
+        p.icon as p_icon,
+        p.level as p_level,
+        p.parent_code as p_parentCode,
+        p.parent_id as p_parentId,
+        p.type as p_type,
+        p.id as p_id,
+        p.url as p_url
+    </sql>
+
+
+</mapper>
